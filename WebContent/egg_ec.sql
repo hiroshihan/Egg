@@ -41,3 +41,4 @@ insert into user(db_item_code, db_item_name, db_item_price, db_item_category, db
 insert into user(db_item_code, db_item_name, db_item_price, db_item_category, db_item_review) values(HITOSHI:MATSUMOTO　Presents　ドキュメンタル　シーズン1,3068,DVD,レビュー);
 insert into user(db_item_code, db_item_name, db_item_price, db_item_category, db_item_review) values(カメラを止めるな！スピンオフ「ハリウッド大作戦！」,2248,DVD,レビュー);
 insert into user(db_item_code, db_item_name, db_item_price, db_item_category, db_item_review) values(ミスト　コレクターズ・エディション,2268,DVD,レビュー);
+
