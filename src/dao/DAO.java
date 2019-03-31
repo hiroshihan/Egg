@@ -12,7 +12,10 @@ public interface DAO {
 
 	public Object select(CommonBean bean);
 
-	public Object insertInto(CommonBean bean);
+	public Object insert(CommonBean bean);
 	
-
+	public int update(CommonBean bean);
+	
+	public int delete(CommonBean bean);
+	
 }
