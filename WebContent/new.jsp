@@ -8,15 +8,16 @@
 </head>
 <body>
 <h1>新規登録</h1>
-ーーーーーーーーーーーーーーーーーーーー<br>
+<hr width="800"align="left">
+
 
 名前：
 <input type="text" name="name">
-<br>
+<br><br>
 性別:
 <input type="radio"name="seibetu"value="mr">男
 <input type="radio"name="seibetu"value="miss">女
-<br>
+<br><br>
 都道府県：
 <select name="pref">
 <option value="">選択してください</option>
@@ -68,11 +69,28 @@
 <option value="鹿児島県">鹿児島県</option>
 <option value="沖縄県">沖縄県</option>
 </select>
+<br><br>
+<script src="https://ajaxzip3.github.io/ajaxzip3.js"></script>
 <form>
-  <label>郵便番号(ハイフンもOK)</label>
+  <label>郵便番号(ハイフンもOK):</label>
   <input type="text" name="zip11" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','addr11','addr11');">
-  <label>都道府県と以降の住所</label>
+  <br><br>
+  <label>都道府県と以降の住所:</label>
   <input type="text" name="addr11" size="60">
 </form>
+<br><br>
+電話番号(ハイフン無し):<input type="text" name="tel">
+<br><br>
+アカウント名:<input type="text"name="account">
+<br><br>
+
+パスワード:<input type="password" name="pas">
+<br><br>
+
+パスワード（再入力）:<input type="password"name="pas1">
+<br><br>
+メールアドレス:<input type="text"name="mail">
+<br><br>
+<input type="submit"value="登録">
 </body>
 </html>
