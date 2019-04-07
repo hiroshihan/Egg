@@ -1,8 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.logging.LoggingMXBean;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 
 /**
@@ -18,37 +15,36 @@ import javax.websocket.Session;
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends CommonServlet {
+	private static final long serialVersionUID = 1L;	
 	
 	private String USER = "-";
 	private String PASS = "-";
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTf-8");
-		
-		
-		PrintWriter out = response.getWriter();
-		
+		setCharacterEncoding(request, response);
 		String action = request.getParameter("action");
 		if(action.equals("login")) {
 			String name = request.getParameter("username");
 			String pw = request.getParameter("userpassword");
-			
-			if(name.equals(USER)&& pw.equals(PASS)) {
+			if (name.equals(USER) && pw.equals(PASS)) {
 				HttpSession session = request.getSession();
 				session.setAttribute("isLogin", "true");
-			}else {
+			} else {
 				HttpSession session = request.getSession();
-				session.setAttribute("isLogin","false");
+				session.setAttribute("isLogin", "false");
+			}
+			connectJsp(request, response, null, "Login");
+		} else if (action.equals("logout")) {
+			HttpSession session = request.getSession(false);
+			if (session != null) {
+				session.invalidate();
 			}
 		}
-			else if(action.equals("logout")) {
-				HttpSession session = request.getSession(false);
-				if(session != null) {
-					session.invalidate();
-				}
-			}
+		
+		
 	}
 				
 	/**
