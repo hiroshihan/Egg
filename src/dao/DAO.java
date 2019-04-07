@@ -17,5 +17,4 @@ public interface DAO {
 	public int update(CommonBean bean);
 	
 	public int delete(CommonBean bean);
-	
 }
