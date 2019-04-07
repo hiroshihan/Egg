@@ -14,14 +14,8 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class LoginServlet
  */
 @WebServlet("/LoginServlet")
-//public class LoginServlet extends CommonServlet {
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends CommonServlet {
 	private static final long serialVersionUID = 1L;	
-
-	public LoginServlet(){
-		//super(request);
-		super();
-	}
 	
 	private String USER = "-";
 	private String PASS = "-";
@@ -30,27 +24,27 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTf-8");
-		
+		setCharacterEncoding(request, response);
 		String action = request.getParameter("action");
 		if(action.equals("login")) {
 			String name = request.getParameter("username");
 			String pw = request.getParameter("userpassword");
-			
-			if(name.equals(USER)&& pw.equals(PASS)) {
+			if (name.equals(USER) && pw.equals(PASS)) {
 				HttpSession session = request.getSession();
 				session.setAttribute("isLogin", "true");
-			}else {
+			} else {
 				HttpSession session = request.getSession();
-				session.setAttribute("isLogin","false");
+				session.setAttribute("isLogin", "false");
 			}
-		} else if(action.equals("logout")) {
+			connectJsp(request, response, null, "Login");
+		} else if (action.equals("logout")) {
 			HttpSession session = request.getSession(false);
-			if(session != null) {
+			if (session != null) {
 				session.invalidate();
 			}
 		}
+		
+		
 	}
 				
 	/**

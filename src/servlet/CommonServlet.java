@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 public class CommonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public CommonServlet(HttpServletRequest request) throws UnsupportedEncodingException {
-		request.setCharacterEncoding("UTF-8");
+	public CommonServlet() {
+		super();
 	}
 
 	/**
@@ -41,8 +41,14 @@ public class CommonServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	public void connectJsp(HttpServletRequest request, HttpServletResponse response, String path, String jspName,
-			RequestDispatcher rd) throws ServletException, IOException {
+	public void setCharacterEncoding(HttpServletRequest request, HttpServletResponse response)
+			throws UnsupportedEncodingException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTf-8");
+	}
+
+	public void connectJsp(HttpServletRequest request, HttpServletResponse response, String path, String jspName)
+			throws ServletException, IOException {
 
 		StringBuilder stringBuilder = new StringBuilder("/");
 		if (path != null && !path.equals("")) {
@@ -50,7 +56,7 @@ public class CommonServlet extends HttpServlet {
 		}
 		String jspLink = stringBuilder.append(jspName).append(".jsp").toString();
 
-		rd = request.getRequestDispatcher(jspLink);
+		RequestDispatcher rd = request.getRequestDispatcher(jspLink);
 		rd.forward(request, response);
 	}
 }
