@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -24,8 +25,12 @@ public class CommonDao {
 	public static final String AND = " AND ";
 	public static final String ORDER_BY = " ORDER BY ";
 	public static final String DESC = " DESC";
-	private static final String LIKE = " LIKE '";
+	public static final String LIKE = " LIKE ";
 
+	Connection connection;
+	PreparedStatement statement = null;	
+	ResultSet resultSet;
+	
 	public String VALUES(List<String> insertItems) {
 
 		StringBuilder sb = new StringBuilder("VALUES(");
@@ -57,8 +62,7 @@ public class CommonDao {
 		return sb.append(value).append("%'").toString();
 	}
 
-	Connection connection;
-	PreparedStatement statement = null;
+
 
 	public CommonDao() throws DAOException {
 		if (connection == null)
