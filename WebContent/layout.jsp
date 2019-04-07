@@ -8,6 +8,7 @@
 <title>Eggs Shopping Site</title>
 </head>
 <body>
+<!-- comment add -->
  <table>
   <tr>
    <td colspan="2">

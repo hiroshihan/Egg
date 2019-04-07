@@ -8,7 +8,6 @@
 <title>Welcome Shopping!</title>
 </head>
 <body>
-<jsp:include page="/menu.jsp"/>
 
 <p>ようこそ！Eggs ショッピングサイトへ！</p>
 
