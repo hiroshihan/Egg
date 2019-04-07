@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,18 +18,19 @@ import javax.servlet.http.HttpSession;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;	
 
-	public LoginServlet(HttpServletRequest request) throws UnsupportedEncodingException {
+	public LoginServlet(){
 		//super(request);
 		super();
-		request.setCharacterEncoding("UTF-8");
 	}
-
+	
 	private String USER = "-";
 	private String PASS = "-";
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTf-8");
 		
 		String action = request.getParameter("action");
@@ -45,13 +45,12 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("isLogin","false");
 			}
-		}
-			else if(action.equals("logout")) {
-				HttpSession session = request.getSession(false);
-				if(session != null) {
-					session.invalidate();
-				}
+		} else if(action.equals("logout")) {
+			HttpSession session = request.getSession(false);
+			if(session != null) {
+				session.invalidate();
 			}
+		}
 	}
 				
 	/**
