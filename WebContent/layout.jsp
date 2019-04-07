@@ -23,7 +23,14 @@
  </table>
 
  <jsp:include page="/menu.jsp"></jsp:include>
+ 
 <hr>
 
+<form action="login.html" method="post">
+<input type="submit" value="ログイン">
+</form>
+<form action="New.jsp" method="post">
+<input type="submit" value="新規登録">
+</form>
 </body>
 </html>
