@@ -21,7 +21,6 @@ public class LoginServlet extends CommonServlet {
 	
 	private String USER = "-";
 	private String PASS = "-";
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */

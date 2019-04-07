@@ -18,6 +18,7 @@
 	パスワード:<input type="password" name="password">
 	<input type="hidden" name="action" value="login">
 	<input type="submit" value="ログイン">
+	
 </form>
 </c:if>
 </body>
