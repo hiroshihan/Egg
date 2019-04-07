@@ -25,7 +25,7 @@ public class CommonDao {
 	public static final String AND = " AND ";
 	public static final String ORDER_BY = " ORDER BY ";
 	public static final String DESC = " DESC";
-	private static final String LIKE = " LIKE '";
+	public static final String LIKE = " LIKE ";
 
 	Connection connection;
 	PreparedStatement statement = null;	
