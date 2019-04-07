@@ -13,7 +13,12 @@
 </c:if>
 
 <c:if test="${isLogin eq false}">
-
+<form action="/egg/UserLoginServlet" method="post">
+	ユーザー名:<input type="text" name="username"><br>
+	パスワード:<input type="password" name="password">
+	<input type="hidden" name="action" value="login">
+	<input type="submit" value="ログイン">
+</form>
 </c:if>
 </body>
 </html>

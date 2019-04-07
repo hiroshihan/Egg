@@ -59,5 +59,4 @@ public class LoginServlet extends CommonServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
