@@ -16,12 +16,14 @@
    </td>
   </tr>
   <tr>
-   <td>
-    <%@ include file="/top.jsp" %>
+   <td bgcolor="#AFEEEE">
+    <jsp:include page="/top.jsp" />
    </td>
   </tr>
- 
  </table>
+
+ <jsp:include page="/menu.jsp"></jsp:include>
+<hr>
 
 </body>
 </html>
