@@ -12,9 +12,6 @@
 	<jsp:include page="/header.jsp"/>
 
 	<h1>ようこそ！Eggs ショッピングサイトへ！</h1>
-	<form action="/Egg/CategoryServlet" method="post">
-	<input name="searchword" type="text" size="30" placeholder="商品名を入力してみてください">
-	</form>
 	<p></p>
 	<p></p>
 	<h2>商品一覧</h2>
