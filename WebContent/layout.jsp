@@ -16,8 +16,8 @@
    </td>
   </tr>
   <tr>
-   <td>
-    <%@ include file="/top.jsp" %>
+   <td bgcolor="#AFEEEE">
+    <jsp:include page="/top.jsp" />
    </td>
   </tr>
    <tr>
@@ -25,8 +25,17 @@
     <%@ include file="/Login.jsp" %>
    </td>
   </tr>
-
  </table>
 
+ <jsp:include page="/menu.jsp"></jsp:include>
+ 
+<hr>
+
+<form action="login.html" method="post">
+<input type="submit" value="ログイン">
+</form>
+<form action="New.jsp" method="post">
+<input type="submit" value="新規登録">
+</form>
 </body>
 </html>
