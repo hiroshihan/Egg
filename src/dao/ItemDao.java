@@ -48,7 +48,7 @@ public class ItemDao extends CommonDao {
 
 	}
 
-	public List<String> selectCategory() throws DAOException {
+	public List<String> makeListCategory() throws DAOException {
 		String sql = new StringBuilder(SELECT).append(DISTINCT).append(DB_ITEM_CATEGORY).append(FROM).append("item")
 				.toString();
 		try {
