@@ -12,7 +12,8 @@
  <table>
   <tr>
    <td colspan="2">
-    <%@ include file="/header.html" %>
+    <!-- comment add -->
+    <h1 align="center">Eggs Shopping Site</h1>
    </td>
   </tr>
   <tr>
@@ -22,13 +23,13 @@
   </tr>
    <tr>
    <td>
-    <%@ include file="/Login.jsp" %>
+    <%@ include file="/login.jsp" %>
    </td>
   </tr>
  </table>
 
  <jsp:include page="/menu.jsp"></jsp:include>
- 
+
 <hr>
 
 <form action="login.html" method="post">
