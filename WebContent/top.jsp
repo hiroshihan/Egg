@@ -9,8 +9,11 @@
 </head>
 <body>
 
-	<p>ようこそ！Eggs ショッピングサイトへ！</p>
+	<jsp:include page="/header.jsp"/>
 
+	<h1>ようこそ！Eggs ショッピングサイトへ！</h1>
+	<p></p>
+	<p></p>
 	<h2>商品一覧</h2>
 	<table border="1">
 		<tr>
