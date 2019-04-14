@@ -91,6 +91,8 @@
 <br><br>
 メールアドレス:<input type="text"name="mail">
 <br><br>
+<form action="/egg/InsertUserServlet" method="post">
 <input type="submit"value="登録">
+</form>
 </body>
 </html>
