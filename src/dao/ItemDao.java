@@ -45,7 +45,29 @@ public class ItemDao extends CommonDao {
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました");
 		}
+
 	}
+
+	public List<String> selectCategory() throws DAOException {
+		String sql = new StringBuilder(SELECT).append(DISTINCT).append(DB_ITEM_CATEGORY).append(FROM).append("item")
+				.toString();
+		try {
+			statement = connection.prepareStatement(sql);
+			resultSet = statement.executeQuery();
+			List<String> categoryList = new ArrayList<>();
+			while (resultSet.next()) {
+				categoryList.add(resultSet.getString(DB_ITEM_CATEGORY));
+			}
+			return categoryList;
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+			throw new DAOException("レコードの操作に失敗しました");
+
+		}
+
+	}
+
 	 
 	public List<DBitemBean> selectName() throws DAOException {
 
@@ -150,4 +172,5 @@ public class ItemDao extends CommonDao {
 			throw new DAOException("レコードの操作に失敗しました");
 		}
 	}
+
 }
