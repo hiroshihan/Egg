@@ -14,6 +14,7 @@
 	<h1>ようこそ！Eggs ショッピングサイトへ！</h1>
 	<p></p>
 	<p></p>
+	<jsp:include page="/login.jsp"/>
 	<h2>商品一覧</h2>
 	<table border="1">
 		<tr>
