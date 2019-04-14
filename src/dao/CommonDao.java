@@ -16,6 +16,7 @@ public class CommonDao {
 	static final String PASS = "egg1234";
 
 	public static final String SELECT = "SELECT ";
+	public static final String DISTINCT = "DISTINCT ";
 	public static final String FROM = " FROM ";
 	public static final String INSERT_INTO = "INSERT INTO ";
 	public static final String UPDATE = "UPDATE ";
