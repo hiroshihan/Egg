@@ -42,7 +42,7 @@ public class TopServlet extends CommonServlet {
 			ItemDao dao = new ItemDao();
 			itemBeans = dao.selectAll();
 			request.setAttribute("items", itemBeans);
-			categoryList=dao.selectCategory();
+			categoryList=dao.makeListCategory();
 			request.setAttribute("categories", categoryList);
 			connectJsp(request, response, "", "top");
 		} catch (DAOException e) {
