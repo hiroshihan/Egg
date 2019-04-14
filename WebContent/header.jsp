@@ -9,11 +9,11 @@
 </head>
 <body>
 
-<a href="/servlet/TopServlet?action=top">ホーム画面</a>
+<a href="/Egg/TopServlet?action=top">ホーム画面</a>
 ｜
 <c:forEach items="${categories}" var="category">
-<a href="/servlet/TopServlet?list=${category}">${category}</a>｜ 
+<a href="/Egg/TopServlet?list=${category}">${category}</a>｜
 </c:forEach>
-<a href="/servlet/cart/CartServlet?action=show">カートを見る</a>
+<a href="/Egg/CartServlet?action=show">カートを見る</a>
 </body>
 </html>
