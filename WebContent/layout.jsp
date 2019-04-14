@@ -20,6 +20,11 @@
     <jsp:include page="/top.jsp" />
    </td>
   </tr>
+   <tr>
+   <td>
+    <%@ include file="/Login.jsp" %>
+   </td>
+  </tr>
  </table>
 
  <jsp:include page="/menu.jsp"></jsp:include>
