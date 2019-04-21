@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,6 +39,7 @@ public class TopServlet extends CommonServlet {
 		setCharacterEncoding(request, response);
 		List<DBitemBean> itemBeans = new ArrayList<DBitemBean>();
 		List<String> categoryList = new ArrayList<>();
+
 		try {
 			ItemDao dao = new ItemDao();
 			itemBeans = dao.selectAll();
@@ -63,5 +65,18 @@ public class TopServlet extends CommonServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
+//	public void init() throws ServletException{
+//		try {
+//				// カテゴリ一覧は最初にアプリケーションスコープへ入れる
+//				ItemDao dao = new ItemDao();
+//				List<DBitemBean> list = dao.getAllCategories();
+//				getServletContext().setAttribute("categories", list);
+//		}catch(DAOException e){
+//			e.printStackTrace();
+//			throw new ServletException();
+//		}
+//	}
+	
 
 }

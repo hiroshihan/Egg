@@ -17,6 +17,7 @@ public class CommonDao {
 
 	public static final String SELECT = "SELECT ";
 	public static final String DISTINCT = "DISTINCT ";
+	public static final String COUNT = "COUNT ";
 	public static final String FROM = " FROM ";
 	public static final String INSERT_INTO = "INSERT INTO ";
 	public static final String UPDATE = "UPDATE ";
@@ -34,17 +35,19 @@ public class CommonDao {
 	
 	public String VALUES(List<String> insertItems) {
 
-		StringBuilder sb = new StringBuilder("VALUES(");
+		StringBuilder sb = new StringBuilder("(");
 		for (String insertItem : insertItems) {
-			int i = 1;
 			sb.append(insertItem);
-			i++;
-			if (i == insertItems.size()) {
-				break;
-			}
 			sb.append(", ");
-
 		}
+		sb.delete(sb.length()-2, sb.length());
+		sb.append(") VALUES(");
+
+		for (int i = 0; i < insertItems.size();i++) {
+			sb.append("?");
+			sb.append(", ");
+		}
+		sb.delete(sb.length()-2, sb.length());
 		return sb.append(")").toString();
 	}
 
