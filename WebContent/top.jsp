@@ -34,7 +34,8 @@
 			</tr>
 		</c:forEach>
 	</table>
-
+<a href="/Egg/login.jsp">ログイン</a>
+<a href="/Egg/new.jsp">新規登録</a>
 
 </body>
 </html>

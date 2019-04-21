@@ -10,6 +10,7 @@
 <h1>新規登録</h1>
 <hr width="800"align="left">
 
+<form action="/Egg/ConfirmInsertUserServlet" method="post">
 
 名前：
 <input type="text" name="name">
@@ -71,13 +72,11 @@
 </select>
 <br><br>
 <script src="https://ajaxzip3.github.io/ajaxzip3.js"></script>
-<form>
   <label>郵便番号(ハイフンもOK):</label>
   <input type="text" name="zip11" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','addr11','addr11');">
   <br><br>
   <label>都道府県と以降の住所:</label>
   <input type="text" name="addr11" size="60">
-</form>
 <br><br>
 電話番号(ハイフン無し):<input type="text" name="tel">
 <br><br>
@@ -91,8 +90,11 @@
 <br><br>
 メールアドレス:<input type="text"name="mail">
 <br><br>
-<form action="/egg/InsertUserServlet" method="post">
 <input type="submit"value="登録">
+</form>
+<p></p>
+<form action="/Egg/TopServlet" method="post">
+<input type="submit"value="Top画面に戻る">
 </form>
 </body>
 </html>

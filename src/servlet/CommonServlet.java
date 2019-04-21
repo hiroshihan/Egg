@@ -27,8 +27,7 @@ public class CommonServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		setCharacterEncoding(request, response);
 	}
 
 	/**
@@ -44,12 +43,12 @@ public class CommonServlet extends HttpServlet {
 	public void setCharacterEncoding(HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTf-8");
+		response.setContentType("text/html;charset=UTF-8");
 	}
 
 	public void connectJsp(HttpServletRequest request, HttpServletResponse response, String path, String jspName)
 			throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
 		StringBuilder stringBuilder = new StringBuilder("/");
 		if (path != null && !path.equals("")) {
 			stringBuilder.append(path).append("/");
