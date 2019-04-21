@@ -35,9 +35,9 @@ public class CategoryServlet extends HttpServlet {
 			if (action == null || action.length() == 0 || action.equals("top")) {
 				gotoPage(request, response,"/top.jsp");
 			}else if(action.equals("list")){
-				int categoryCode = Integer.parseInt(request.getParameter("code"));
+				String category = request.getParameter("code");
 				ItemDao dao = new ItemDao();
-				List<DBitemBean> list = dao.selectCategory(categoryCode);
+				List<DBitemBean> list = dao.selectCategory(category);
 				// listをリクエストスコープに入れてへJSPへフォワードする
 				request.setAttribute("items", list);
 				gotoPage(request, response,"/category.jsp");
@@ -60,18 +60,6 @@ public class CategoryServlet extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	public void init() throws ServletException{
-		try {
-				// カテゴリ一覧は最初にアプリケーションスコープへ入れる
-				ItemDao dao = new ItemDao();
-				List<DBitemBean>list = dao.selectCategory();
-				getServletContext().setAttribute("categories", list);
-		}catch(DAOException e){
-			e.printStackTrace();
-			throw new ServletException();
-		}
-	}
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

@@ -2,7 +2,9 @@ package dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.LinkedHashSet;
 
 import bean.db.DBitemBean;
 import dao.error.DAOException;
@@ -29,8 +31,8 @@ public class ItemDao extends CommonDao {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			List<DBitemBean> list = new ArrayList<>();
-			DBitemBean dBitemBean = new DBitemBean();
 			while (resultSet.next()) {
+				DBitemBean dBitemBean = new DBitemBean();
 				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
 				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
 				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
@@ -77,8 +79,8 @@ public class ItemDao extends CommonDao {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			List<DBitemBean> list = new ArrayList<>();
-			DBitemBean dBitemBean = new DBitemBean();
 			while (resultSet.next()) {
+				DBitemBean dBitemBean = new DBitemBean();
 				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
 				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
 				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
@@ -95,16 +97,16 @@ public class ItemDao extends CommonDao {
 		}
 	}
 	 
-	public List<DBitemBean> selectCategory() throws DAOException {
+	public List<DBitemBean> selectCategory(String category) throws DAOException {
 
-		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").append(WHERE).append("db_item_category").append(LIKE).append("%").append(DB_ITEM_CATEGORY).append("%").toString();
+		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").append(WHERE).append("DB_ITEM_CATEGORY").append("=").append("'").append(category).append("'").toString();
 
 		try {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			List<DBitemBean> list = new ArrayList<>();
-			DBitemBean dBitemBean = new DBitemBean();
 			while (resultSet.next()) {
+				DBitemBean dBitemBean = new DBitemBean();
 				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
 				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
 				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
@@ -129,8 +131,8 @@ public class ItemDao extends CommonDao {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			List<DBitemBean> list = new ArrayList<>();
-			DBitemBean dBitemBean = new DBitemBean();
 			while (resultSet.next()) {
+				DBitemBean dBitemBean = new DBitemBean();
 				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
 				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
 				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
@@ -155,8 +157,8 @@ public class ItemDao extends CommonDao {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			List<DBitemBean> list = new ArrayList<>();
-			DBitemBean dBitemBean = new DBitemBean();
 			while (resultSet.next()) {
+				DBitemBean dBitemBean = new DBitemBean();
 				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
 				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
 				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
@@ -173,4 +175,26 @@ public class ItemDao extends CommonDao {
 		}
 	}
 
+	public List<DBitemBean> getAllCategories() throws DAOException {
+
+		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").toString();
+
+		try {
+			statement = connection.prepareStatement(sql);
+			resultSet = statement.executeQuery();
+			List<DBitemBean> list = new ArrayList<>();
+			while (resultSet.next()) {
+				DBitemBean dBitemBean = new DBitemBean();
+				dBitemBean.setDb_item_category(resultSet.getString(DB_ITEM_CATEGORY));
+				list.add(dBitemBean);
+			}
+			return list;
+
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+			throw new DAOException("レコードの操作に失敗しました");
+		}
+	}
+	
 }

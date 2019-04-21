@@ -12,7 +12,7 @@
 <a href="/Egg/TopServlet?action=top">ホーム画面</a>
 ｜
 <c:forEach items="${categories}" var="category">
-<a href="/Egg/CategoryServlet?list=${category}">${category}</a>｜
+<a href="/Egg/CategoryServlet?action=list&code=${category}">${category}</a>｜
 </c:forEach>
 <a href="/Egg/CartServlet?action=show">カートを見る</a>
 </body>

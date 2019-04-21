@@ -66,4 +66,17 @@ public class TopServlet extends CommonServlet {
 		doGet(request, response);
 	}
 
+//	public void init() throws ServletException{
+//		try {
+//				// カテゴリ一覧は最初にアプリケーションスコープへ入れる
+//				ItemDao dao = new ItemDao();
+//				List<DBitemBean> list = dao.getAllCategories();
+//				getServletContext().setAttribute("categories", list);
+//		}catch(DAOException e){
+//			e.printStackTrace();
+//			throw new ServletException();
+//		}
+//	}
+	
+
 }
