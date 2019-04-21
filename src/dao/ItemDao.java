@@ -29,8 +29,8 @@ public class ItemDao extends CommonDao {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			List<DBitemBean> list = new ArrayList<>();
-			DBitemBean dBitemBean = new DBitemBean();
 			while (resultSet.next()) {
+				DBitemBean dBitemBean = new DBitemBean();
 				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
 				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
 				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
@@ -77,8 +77,8 @@ public class ItemDao extends CommonDao {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			List<DBitemBean> list = new ArrayList<>();
-			DBitemBean dBitemBean = new DBitemBean();
 			while (resultSet.next()) {
+				DBitemBean dBitemBean = new DBitemBean();
 				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
 				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
 				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
@@ -103,8 +103,8 @@ public class ItemDao extends CommonDao {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			List<DBitemBean> list = new ArrayList<>();
-			DBitemBean dBitemBean = new DBitemBean();
 			while (resultSet.next()) {
+				DBitemBean dBitemBean = new DBitemBean();
 				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
 				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
 				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
@@ -129,8 +129,8 @@ public class ItemDao extends CommonDao {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			List<DBitemBean> list = new ArrayList<>();
-			DBitemBean dBitemBean = new DBitemBean();
 			while (resultSet.next()) {
+				DBitemBean dBitemBean = new DBitemBean();
 				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
 				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
 				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
@@ -155,8 +155,8 @@ public class ItemDao extends CommonDao {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			List<DBitemBean> list = new ArrayList<>();
-			DBitemBean dBitemBean = new DBitemBean();
 			while (resultSet.next()) {
+				DBitemBean dBitemBean = new DBitemBean();
 				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
 				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
 				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
