@@ -9,6 +9,9 @@
 </head>
 <body>
 <h1>カートの中身</h1>
+<c:if test="${empty cart.items}">
+現在、カートは空です。
+</c:if>
 
 <%-- カート中身が入る--%>
 <a href="http://localhost:8080/Egg/confim.jsp">購入画面</a>
