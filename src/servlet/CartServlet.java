@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import bean.db.DBitemBean;
 import dao.ItemDao;
 
@@ -20,12 +19,15 @@ public class CartServlet extends CommonServlet {
 			HttpSession session = request.getSession(false);
 			String isLogin = (String)session.getAttribute("isLogin");
 			
-			if(isLogin.equals("true")) {
-				String item_code = request.getParameter("item_code");
-				ItemDao dao = new ItemDao();
-				DBitemBean itembean = dao.getItem(item_code);
-				request.setAttribute("itembean", itembean);
-				super.connectJsp(request,response,"","cart");
+			if(isLogin != null){
+				if(isLogin.equals("true")) {
+					String item_code = request.getParameter("item_code");
+					ItemDao dao = new ItemDao();
+					DBitemBean itembean = dao.getItem(item_code);
+					
+					request.setAttribute("itembean", itembean);
+					super.connectJsp(request,response,"","cart");
+				}
 			} else {
 				super.connectJsp(request,response,"","login");
 			}
