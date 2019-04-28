@@ -1,14 +1,8 @@
 package dao;
 
-import java.awt.datatransfer.StringSelection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.LinkedHashSet;
-
 import bean.db.DBitemBean;
 import dao.error.DAOException;
 
@@ -180,22 +174,22 @@ public class ItemDao extends CommonDao {
 		
 	}
 
-	public DBitemBean getItem(String db_item_code) {
+	public DBitemBean getItem(String db_item_code) throws DAOException {
 		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").append(ORDER_BY).append("db_item_code").toString();
-
+		
 		try {
-			 sql =  "SELECT *FROM item WHERE code =?";
+			sql =  "SELECT *FROM item WHERE code =?";
 			statement = connection.prepareStatement(sql);
-			
 			statement.setString(1, db_item_code);
-			
-					
-		}
-			
-			
+			DBitemBean dBitemBean = new DBitemBean();
+			return dBitemBean;
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの操作に失敗しました");
 		}
 
-
+	}
+	
 	public List<DBitemBean> getAllCategories() throws DAOException {
 
 		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").toString();
