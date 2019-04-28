@@ -21,9 +21,7 @@ public class ItemDao extends CommonDao {
 	}
 
 	public List<DBitemBean> selectAll() throws DAOException {
-
 		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").toString();
-
 		try {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
@@ -38,18 +36,14 @@ public class ItemDao extends CommonDao {
 				list.add(dBitemBean);
 			}
 			return list;
-
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました");
 		}
-
 	}
 
 	public List<String> makeListCategory() throws DAOException {
-		String sql = new StringBuilder(SELECT).append(DISTINCT).append(DB_ITEM_CATEGORY).append(FROM).append("item")
-				.toString();
+		String sql = new StringBuilder(SELECT).append(DISTINCT).append(DB_ITEM_CATEGORY).append(FROM).append("item").toString();
 		try {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
@@ -59,19 +53,15 @@ public class ItemDao extends CommonDao {
 			}
 			return categoryList;
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました");
 
 		}
-
 	}
 
 	 
 	public List<DBitemBean> selectName() throws DAOException {
-
 		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").append(WHERE).append("db_item_name").append(LIKE).append("%").append(DB_ITEM_NAME).append("%").toString();
-
 		try {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
@@ -86,18 +76,14 @@ public class ItemDao extends CommonDao {
 				list.add(dBitemBean);
 			}
 			return list;
-
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました");
 		}
 	}
 	 
 	public List<DBitemBean> selectCategory(String category) throws DAOException {
-
 		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").append(WHERE).append("DB_ITEM_CATEGORY").append("=").append("'").append(category).append("'").toString();
-
 		try {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
@@ -112,18 +98,14 @@ public class ItemDao extends CommonDao {
 				list.add(dBitemBean);
 			}
 			return list;
-
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました");
 		}
 	}
 	 
 	public List<DBitemBean> sortName() throws DAOException {
-
 		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").append(ORDER_BY).append("db_item_name").toString();
-
 		try {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
@@ -138,18 +120,14 @@ public class ItemDao extends CommonDao {
 				list.add(dBitemBean);
 			}
 			return list;
-
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました");
 		}
 	}
 	
 	public List<DBitemBean> sortPrice() throws DAOException {
-
 		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").append(ORDER_BY).append("db_item_price").toString();
-
 		try {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
@@ -164,9 +142,7 @@ public class ItemDao extends CommonDao {
 				list.add(dBitemBean);
 			}
 			return list;
-
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました");
 		}
@@ -175,13 +151,19 @@ public class ItemDao extends CommonDao {
 	}
 
 	public DBitemBean getItem(String db_item_code) throws DAOException {
-		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").append(ORDER_BY).append("db_item_code").toString();
-		
 		try {
-			sql =  "SELECT *FROM item WHERE code =?";
+			String sql =  "SELECT * FROM item WHERE db_item_code = ?";
 			statement = connection.prepareStatement(sql);
-			statement.setString(1, db_item_code);
+			statement.setInt(1, Integer.parseInt(db_item_code));
+			resultSet = statement.executeQuery();
 			DBitemBean dBitemBean = new DBitemBean();
+			while (resultSet.next()) {
+				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
+				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
+				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
+				dBitemBean.setDb_item_category(resultSet.getString(DB_ITEM_CATEGORY));
+				dBitemBean.setDb_item_review(resultSet.getString(DB_ITEM_REVIEW));
+			}
 			return dBitemBean;
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -191,9 +173,7 @@ public class ItemDao extends CommonDao {
 	}
 	
 	public List<DBitemBean> getAllCategories() throws DAOException {
-
 		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").toString();
-
 		try {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
@@ -204,9 +184,7 @@ public class ItemDao extends CommonDao {
 				list.add(dBitemBean);
 			}
 			return list;
-
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました");
 		}

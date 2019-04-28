@@ -9,23 +9,21 @@
 </head>
 <body>
 
-<jsp:include page="/header.jsp" />
+<jsp:include page="/header.jsp"/>
 
 <h3>商品一覧</h3>
 
 
-	<form action="/Egg/CartServlet?action=add" method="post">
 		<table border="1">
 			<tr>
 				<th>コード</th>
 				<th>商品名</th>
 				<th>価格</th>
-				<th>カテゴリー</th>
 				<th>個数</th>
+				<th>アクション</th>
 			</tr>
 		<c:forEach items="${items}" var="item">
 			<tr>
-				<input type="hidden" name="item_code" value="${item.db_item_code}">	
 				<td><b>${item.db_item_code}</b></td>
 				<td><b>${item.db_item_name}</b></td>
 				<td><b>${item.db_item_price}円</b></td>
@@ -40,10 +38,15 @@
 				</select>
 				個<br>
 				</td>
-				<td><input type="submit" value="カートに追加"></td>
-			</tr>			
-	  </c:forEach>
-	 </table>
-	</form>
+				<td>
+				<form action="/Egg/CartServlet" method="post">
+				<input type="hidden" name="action" value="add">
+				<input type="hidden" name="item_code" value="${item.db_item_code}">
+				<input type="submit" value="カートに追加">
+				</form>
+				</td>
+			</tr>
+			</c:forEach>
+		</table>
 </body>
 </html>
