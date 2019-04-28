@@ -22,12 +22,13 @@
 				<th>個数</th>
 				<th>アクション</th>
 			</tr>
-			<c:forEach items="${items}" var="item">
+		<c:forEach items="${items}" var="item">
 			<tr>
 				<td><b>${item.db_item_code}</b></td>
 				<td><b>${item.db_item_name}</b></td>
 				<td><b>${item.db_item_price}円</b></td>
-				<td>
+				<td><b>${item.db_item_category}</b></td>
+				<td>：
 				<select name="quantity">
 				<option value="1">1
 				<option value="2">2
