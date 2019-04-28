@@ -12,14 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sun.jndi.url.iiopname.iiopnameURLContextFactory;
-
-import bean.db.DBitemBean;
-import dao.ItemDao;
-
-/**
- * Servlet implementation class CartServlet
- */
 @WebServlet("/CartServlet")
 public class CartServlet extends CommonServlet {
 	private static final long serialVersionUID = 1L;
