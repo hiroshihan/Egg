@@ -23,8 +23,8 @@
 				<th>カテゴリー</th>
 				<th>個数</th>
 			</tr>
+			<c:forEach items="${items}" var="item">
 			<tr>
-				<c:forEach items="${items}" var="item">
 				<input type="hidden" name="item_code" value="${item.db_item_code}">	
 				<td><b>${item.db_item_code}</b></td>
 				<td><b>${item.db_item_name}</b></td>
@@ -41,8 +41,8 @@
 				</td>
 				<input type="submit" value="カートに追加">
 			</tr>
+			</c:forEach>
 		</table>
 	</form>
-</c:forEach>
 </body>
 </html>
