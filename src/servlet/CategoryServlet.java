@@ -19,16 +19,17 @@ public class CategoryServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			// パラメータの解析
 			String action = request.getParameter("action");
-			// topまたはパラメータなしの場合はトップページを表示
+			
 			if (action == null || action.length() == 0 || action.equals("top")) {
 				gotoPage(request, response,"/top.jsp");
 			}else if(action.equals("list")){
-				String category = request.getParameter("code");
 				ItemDao dao = new ItemDao();
+				List<String> categoryList = dao.makeListCategory();
+				request.setAttribute("categories", categoryList);
+				
+				String category = request.getParameter("code");
 				List<DBitemBean> list = dao.selectCategory(category);
-				// listをリクエストスコープに入れてへJSPへフォワードする
 				request.setAttribute("items", list);
 				gotoPage(request, response,"/category.jsp");
 			}else{
@@ -43,15 +44,12 @@ public class CategoryServlet extends HttpServlet {
 		
 	}
 	
-	private void gotoPage(HttpServletRequest request,
-			HttpServletResponse response, String page)throws ServletException,
-			IOException{
+	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)throws ServletException, IOException{
 		RequestDispatcher rd = request.getRequestDispatcher(page);
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
