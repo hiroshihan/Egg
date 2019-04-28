@@ -21,27 +21,18 @@ public class UserDao extends CommonDao {
 	public UserDao() throws DAOException {
 		super();
 	}
-
-	public List<DBuserBean> addUser() throws DAOException {
-
-		String sql = new StringBuilder(SELECT).append("*").append(FROM).append(TABLE_NAME).toString();
-
+	
+	public int addUser(String db_user_name, String db_user_post, String db_user_email, String db_user_gender, String db_user_pass) throws DAOException {
 		try {
+			String sql = "";
 			statement = connection.prepareStatement(sql);
-			resultSet = statement.executeQuery();
-			List<DBuserBean> list = new ArrayList<>();
-			DBuserBean dBuserBean = new DBuserBean();
-			while (resultSet.next()) {
-				dBuserBean.setDb_user_code(resultSet.getInt(DB_USER_CODE));
-				dBuserBean.setDb_user_name(resultSet.getString(DB_USER_NAME));
-				dBuserBean.setDb_user_post(resultSet.getString(DB_USER_POST));
-				dBuserBean.setDb_user_email(resultSet.getString(DB_USER_EMAIL));
-				dBuserBean.setDb_user_gender(resultSet.getString(DB_USER_GENDER));
-				dBuserBean.setDb_user_pass(resultSet.getString(DB_USER_PASS));
-				list.add(dBuserBean);
-			}
-			return list;
-
+			//setStringなどを設定
+			
+			int rows = statement.executeUpdate();
+			return rows;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの操作に失敗しました");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました");

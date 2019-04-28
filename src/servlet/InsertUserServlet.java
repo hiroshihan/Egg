@@ -5,8 +5,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import bean.db.DBuserBean;
 import dao.UserDao;
 import dao.error.DAOException;
 
@@ -21,28 +19,22 @@ public class InsertUserServlet extends CommonServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		setCharacterEncoding(request, response);
 		try {
-			HttpSession session = request.getSession(false);		
-			DBuserBean userBean= (DBuserBean) session.getAttribute("userBean");
+			//jsp側からデータを受け取る（request.getParameterを使う）
+			String db_user_name = request.getParameter("name");       
+			String db_user_post = request.getParameter("zip11");
+			String db_user_email = request.getParameter("mail");
+			String db_user_gender = request.getParameter("gender");
+			String db_user_pass = request.getParameter("pass");
 			
 			UserDao dao =new UserDao();
-			int result= dao.insert(userBean);
-
-			session.removeAttribute("userBean");
-			request.setAttribute("userBean", userBean);
-			request.setAttribute("result", result);
+			//引数にinsertしたいデータを設定する。データはバラでもBeanにまとめるでもどっちでもいいよ
+			dao.addUser(db_user_name, db_user_post, db_user_email,	db_user_gender, db_user_pass); 
 			connectJsp(request, response, "", "complete");
-			
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		doGet(request, response);
 	}
 

@@ -29,9 +29,9 @@ public class CommonDao {
 	public static final String DESC = " DESC";
 	public static final String LIKE = " LIKE ";
 
-	Connection connection;
+	private Connection connection;
 	PreparedStatement statement = null;	
-	ResultSet resultSet;
+	ResultSet resultSet = null;
 	
 	public String VALUES(List<String> insertItems) {
 
@@ -73,7 +73,7 @@ public class CommonDao {
 			getConnection();
 	}
 
-	void getConnection() throws DAOException {
+	private void getConnection() throws DAOException {
 		try {
 			Class.forName(JDBC_DRIVER);
 			connection = DriverManager.getConnection(URL, USER, PASS);
@@ -83,7 +83,7 @@ public class CommonDao {
 		}
 	}
 
-	void close() throws SQLException {
+	private void close() throws SQLException {
 		if (connection != null) {
 			connection.close();
 			connection = null;

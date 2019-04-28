@@ -10,14 +10,14 @@
 <h1>新規登録</h1>
 <hr width="800"align="left">
 
-<form action="/Egg/ConfirmInsertUserServlet" method="post">
+<form action="/Egg/InsertUserServlet" method="post">
 
 名前：
 <input type="text" name="name">
 <br><br>
 性別:
-<input type="radio"name="seibetu"value="mr">男
-<input type="radio"name="seibetu"value="miss">女
+<input type="radio"name="gender"value="mr">男
+<input type="radio"name="gender"value="miss">女
 <br><br>
 都道府県：
 <select name="pref">
@@ -83,10 +83,10 @@
 アカウント名:<input type="text"name="account">
 <br><br>
 
-パスワード:<input type="password" name="pas">
+パスワード:<input type="password" name="pass">
 <br><br>
 
-パスワード（再入力）:<input type="password"name="pas1">
+パスワード（再入力）:<input type="password"name="pass1">
 <br><br>
 メールアドレス:<input type="text"name="mail">
 <br><br>
