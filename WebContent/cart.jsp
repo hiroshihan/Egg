@@ -12,8 +12,10 @@
 <c:if test="${empty cart.items}">
 現在、カートは空です。
 </c:if>
-
-<%-- カート中身が入る--%>
+<p>${itembean.db_item_code}</p>
+<p>${itembean.db_item_name}</p>
+<p>${itembean.db_item_price}</p>
+<p>${itembean.db_item_category}</p>
 <a href="http://localhost:8080/Egg/confim.jsp">購入画面</a>
 </body>
 </html>
