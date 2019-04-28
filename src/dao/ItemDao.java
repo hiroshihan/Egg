@@ -182,20 +182,15 @@ public class ItemDao extends CommonDao {
 
 	public DBitemBean getItem(String db_item_code) {
 		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").append(ORDER_BY).append("db_item_code").toString();
-
 		try {
-			 sql =  "SELECT *FROM item WHERE code =?";
+			sql =  "SELECT *FROM item WHERE code =?";
 			statement = connection.prepareStatement(sql);
-			
 			statement.setString(1, db_item_code);
-			
-					
-		}
-			
-			
+		} catch(Exception e) {
 		}
 
-
+	}
+	
 	public List<DBitemBean> getAllCategories() throws DAOException {
 
 		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("item").toString();
