@@ -37,7 +37,7 @@ public class LoginServlet extends CommonServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("isLogin", "false");
 			}
-			connectJsp(request, response, null, "Login");
+			connectJsp(request, response, null, "login");
 		} else if (action.equals("logout")) {
 			HttpSession session = request.getSession(false);
 			if (session != null) {
