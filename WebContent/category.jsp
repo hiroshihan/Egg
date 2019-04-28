@@ -9,25 +9,39 @@
 </head>
 <body>
 
-<jsp:include page="/top.jsp" />
+<jsp:include page="/header.jsp" />
 
 <h3>商品一覧</h3>
 
-<c:forEach items="${items}" var="item">
+
 	<form action="/Egg/CartServlet?action=add" method="post">
-		<input type="hidden" name="item_code" value="${item.code}">
-			商品番号：<b>${item.code}</b><br>
-			商品名：<b>${item.name}</b><br>
-			価格（税込）：<b>${item.price}円</b><br>
-			個数：
-			<select name="quantity">
-			<option value="1">1
-			<option value="2">2
-			<option value="3">3
-			<option value="4">4
-			<option value="5">5
-			</select>
-			個<br>
+		<table border="1">
+			<tr>
+				<th>コード</th>
+				<th>商品名</th>
+				<th>価格</th>
+				<th>カテゴリー</th>
+				<th>個数</th>
+			</tr>
+			<tr>
+				<c:forEach items="${items}" var="item">
+				<input type="hidden" name="item_code" value="${item.db_item_code}">	
+				<td><b>${item.db_item_code}</b></td>
+				<td><b>${item.db_item_name}</b></td>
+				<td><b>${item.db_item_price}円</b></td>
+				<td>：
+				<select name="quantity">
+				<option value="1">1
+				<option value="2">2
+				<option value="3">3
+				<option value="4">4
+				<option value="5">5
+				</select>
+				個<br>
+				</td>
+				<input type="submit" value="カートに追加">
+			</tr>
+		</table>
 	</form>
 </c:forEach>
 </body>
