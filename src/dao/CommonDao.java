@@ -77,7 +77,6 @@ public class CommonDao {
 		try {
 			Class.forName(JDBC_DRIVER);
 			connection = DriverManager.getConnection(URL, USER, PASS);
-
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("接続に失敗しました。");

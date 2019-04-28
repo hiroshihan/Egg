@@ -23,12 +23,13 @@
 				<th>カテゴリー</th>
 				<th>個数</th>
 			</tr>
-			<c:forEach items="${items}" var="item">
+		<c:forEach items="${items}" var="item">
 			<tr>
 				<input type="hidden" name="item_code" value="${item.db_item_code}">	
 				<td><b>${item.db_item_code}</b></td>
 				<td><b>${item.db_item_name}</b></td>
 				<td><b>${item.db_item_price}円</b></td>
+				<td><b>${item.db_item_category}</b></td>
 				<td>：
 				<select name="quantity">
 				<option value="1">1
@@ -39,10 +40,10 @@
 				</select>
 				個<br>
 				</td>
-				<input type="submit" value="カートに追加">
-			</tr>
-			</c:forEach>
-		</table>
+				<td><input type="submit" value="カートに追加"></td>
+			</tr>			
+	  </c:forEach>
+	 </table>
 	</form>
 </body>
 </html>
