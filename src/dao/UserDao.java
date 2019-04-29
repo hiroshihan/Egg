@@ -68,6 +68,23 @@ public class UserDao extends CommonDao {
 
 	}
 	
+	public String getUserPwd(String name) throws DAOException {
+		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("user").append(WHERE).append("db_user_code").append("=").append("name").toString();
+
+		try {
+			statement = connection.prepareStatement(sql);
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				String pwd = resultSet.getString("db_user_pass");
+			}
+			return pwd;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("DBでエラーが発生しました。");
+		}
+	}
+	
 	public int insert(DBuserBean userBean) throws DAOException {
 
 		try {
@@ -88,7 +105,7 @@ public class UserDao extends CommonDao {
 			insertItems.add(DB_USER_CODE);
 			insertItems.add(DB_USER_NAME);
 			insertItems.add(DB_USER_POST);
-			insertItems.add(DB_USER_EMAIL);
+			insertItems.	add(DB_USER_EMAIL);
 			insertItems.add(DB_USER_GENDER);
 			insertItems.add(DB_USER_PASS);
 
