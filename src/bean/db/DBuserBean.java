@@ -10,10 +10,8 @@ public class DBuserBean extends CommonBean {
 	private String db_user_gender;
 	private String db_user_pass;
 	
-	
 	public DBuserBean() {
 		super();
-		// TODO 自動生成されたコンストラクター・スタブ
 	}
 	
 	public DBuserBean(int db_user_code, String db_user_name, String db_user_post, String db_user_email,
