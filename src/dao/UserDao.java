@@ -21,18 +21,15 @@ public class UserDao extends CommonDao {
 	public UserDao() throws DAOException {
 		super();
 	}
-	
+
 	public int addUser(String db_user_name, String db_user_post, String db_user_email, String db_user_gender, String db_user_pass) throws DAOException {
 		try {
 			String sql = "";
 			statement = connection.prepareStatement(sql);
 			//setStringなどを設定
-			
+
 			int rows = statement.executeUpdate();
 			return rows;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			throw new DAOException("レコードの操作に失敗しました");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました");
@@ -51,37 +48,38 @@ public class UserDao extends CommonDao {
 				codeList.add(resultSet.getInt(DB_USER_CODE));
 			}
 
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("DBでエラーが発生しました。");
 		}
 
 	}
-	
+
 	public String getUserPwd(String name) throws DAOException {
 		String sql = new StringBuilder(SELECT).append("*").append(FROM).append("user").append(WHERE).append("db_user_code").append("=").append("name").toString();
 
 		try {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
+			String pwd="";
 			while (resultSet.next()) {
-				String pwd = resultSet.getString("db_user_pass");
+				pwd = resultSet.getString("db_user_pass");
 			}
 			return pwd;
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("DBでエラーが発生しました。");
 		}
 	}
-	
+
 	public int insert(DBuserBean userBean) throws DAOException {
 
 		try {
 			String sqlSelectUserCode = new StringBuilder(SELECT).append(DB_USER_CODE).append(FROM).append(TABLE_NAME)
 					.toString();
-						
+
 			statement = connection.prepareStatement(sqlSelectUserCode);
 			resultSet = statement.executeQuery();
 			List<Integer> codeList = new ArrayList<>();
@@ -89,9 +87,9 @@ public class UserDao extends CommonDao {
 				codeList.add(resultSet.getInt(DB_USER_CODE));
 			}
 			System.out.println(codeList.size());
-			
+
 			int dbUserCount = codeList.size();
- 
+
 			List<String> insertItems = new ArrayList<>();
 			insertItems.add(DB_USER_CODE);
 			insertItems.add(DB_USER_NAME);

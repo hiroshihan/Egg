@@ -29,10 +29,10 @@ public class CommonDao {
 	public static final String DESC = " DESC";
 	public static final String LIKE = " LIKE ";
 
-	private Connection connection;
-	PreparedStatement statement = null;	
+	Connection connection;
+	PreparedStatement statement = null;
 	ResultSet resultSet = null;
-	
+
 	public String VALUES(List<String> insertItems) {
 
 		StringBuilder sb = new StringBuilder("(");
