@@ -33,6 +33,11 @@ public class CommonDao {
 	PreparedStatement statement = null;
 	ResultSet resultSet = null;
 
+	public CommonDao() throws DAOException {
+		if (connection == null)
+			getConnection();
+	}
+
 	public String VALUES(List<String> insertItems) {
 
 		StringBuilder sb = new StringBuilder("(");
@@ -40,37 +45,104 @@ public class CommonDao {
 			sb.append(insertItem);
 			sb.append(", ");
 		}
-		sb.delete(sb.length()-2, sb.length());
+		sb.delete(sb.length() - 2, sb.length());
 		sb.append(") VALUES(");
 
-		for (int i = 0; i < insertItems.size();i++) {
+		for (int i = 0; i < insertItems.size(); i++) {
 			sb.append("?");
 			sb.append(", ");
 		}
-		sb.delete(sb.length()-2, sb.length());
+		sb.delete(sb.length() - 2, sb.length());
 		return sb.append(")").toString();
 	}
 
 	public final String LIKE_BEFORE(String value) {
-		StringBuilder sb = new StringBuilder(LIKE).append("%");
+		StringBuilder sb = new StringBuilder(LIKE).append("'%");
 		return sb.append(value).append("'").toString();
 	}
 
 	public final String LIKE_AFTER(String value) {
-		StringBuilder sb = new StringBuilder(LIKE);
+		StringBuilder sb = new StringBuilder(LIKE).append("'");
 		return sb.append(value).append("%'").toString();
 	}
 
 	public final String LIKE_PART(String value) {
-		StringBuilder sb = new StringBuilder(LIKE).append("%");
+		StringBuilder sb = new StringBuilder(LIKE).append("'%");
 		return sb.append(value).append("%'").toString();
 	}
 
+	/**
+	 * select文の結果取得メソッド
+	 *
+	 * @param sql
+	 *            sql文
+	 * @param praceHolder
+	 *            プレースホルダの設定
+	 * @return List<DBitemBean>
+	 * @throws DAOException
+	 */
+	protected ResultSet executeSelect(String sql, List<Object> praceHolder) throws SQLException {
 
+		statement = connection.prepareStatement(sql);
+		if (praceHolder != null) {
+			for (Object element : praceHolder) {
+				int i = 1;
+				if (element instanceof Integer) {
+					statement.setInt(i, (Integer) element);
+					i++;
+				}
+				if (element instanceof String) {
+					statement.setString(i, (String) element);
+					i++;
+				}
+				if (element instanceof java.sql.Date) {
+					statement.setDate(i, (java.sql.Date) element);
+					i++;
+				}
+				if (element instanceof Boolean) {
+					statement.setBoolean(i, (Boolean) element);
+					i++;
+				}
+			}
+		}
+		return statement.executeQuery();
+	}
 
-	public CommonDao() throws DAOException {
-		if (connection == null)
-			getConnection();
+	/**
+	 * Update文/Insert文/Delete文の結果取得メソッド
+	 *
+	 * @param sql
+	 *            sql文
+	 * @param praceHolder
+	 *            プレースホルダの設定
+	 * @return List<DBitemBean>
+	 * @throws SQLException
+	 */
+	protected int executeUpdate(String sql, List<Object> praceHolder) throws SQLException {
+
+		statement = connection.prepareStatement(sql);
+		if (praceHolder != null) {
+			for (Object element : praceHolder) {
+				int i = 1;
+				if (element instanceof Integer) {
+					statement.setInt(i, (Integer) element);
+					i++;
+				}
+				if (element instanceof String) {
+					statement.setString(i, (String) element);
+					i++;
+				}
+				if (element instanceof java.sql.Date) {
+					statement.setDate(i, (java.sql.Date) element);
+					i++;
+				}
+				if (element instanceof Boolean) {
+					statement.setBoolean(i, (Boolean) element);
+					i++;
+				}
+			}
+		}
+		return statement.executeUpdate();
 	}
 
 	private void getConnection() throws DAOException {
@@ -83,7 +155,7 @@ public class CommonDao {
 		}
 	}
 
-	private void close() throws SQLException {
+	void close() throws SQLException {
 		if (connection != null) {
 			connection.close();
 			connection = null;
