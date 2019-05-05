@@ -1,17 +1,20 @@
 package servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import bean.db.DBuserBean;
 import dao.UserDao;
 import dao.error.DAOException;
 
 @WebServlet("/InsertUserServlet")
 public class InsertUserServlet extends CommonServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     public InsertUserServlet() {
         super();
     }
@@ -20,15 +23,15 @@ public class InsertUserServlet extends CommonServlet {
 		setCharacterEncoding(request, response);
 		try {
 			//jsp側からデータを受け取る（request.getParameterを使う）
-			String db_user_name = request.getParameter("name");       
-			String db_user_post = request.getParameter("zip11");
-			String db_user_email = request.getParameter("mail");
-			String db_user_gender = request.getParameter("gender");
-			String db_user_pass = request.getParameter("pass");
-			
+			DBuserBean userBean=new DBuserBean();
+			userBean.setDb_user_name(request.getParameter("name"));
+			userBean.setDb_user_pass(request.getParameter("pass"));
+			userBean.setDb_user_gender(request.getParameter("gender"));
+			userBean.setDb_user_post(request.getParameter("zip11"));
+			userBean.setDb_user_email(request.getParameter("mail"));
 			UserDao dao =new UserDao();
 			//引数にinsertしたいデータを設定する。データはバラでもBeanにまとめるでもどっちでもいいよ
-			dao.addUser(db_user_name, db_user_post, db_user_email,	db_user_gender, db_user_pass); 
+			dao.insert(userBean);
 			connectJsp(request, response, "", "complete");
 		} catch (DAOException e) {
 			e.printStackTrace();
