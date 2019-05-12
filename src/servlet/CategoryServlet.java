@@ -8,9 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bean.db.DBitemBean;
+
+import beandb.DBitemBean;
 import dao.ItemDao;
-import dao.error.DAOException;
+import daoerror.DAOException;
 
 
 @WebServlet("/CategoryServlet")

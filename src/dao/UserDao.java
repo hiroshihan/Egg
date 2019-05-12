@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.db.DBuserBean;
-import dao.error.DAOException;
+import beandb.DBuserBean;
+import daoerror.DAOException;
 
 public class UserDao extends CommonDao {
 

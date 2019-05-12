@@ -1,4 +1,4 @@
-package bean.db;
+package beandb;
 
 import bean.CommonBean;
 

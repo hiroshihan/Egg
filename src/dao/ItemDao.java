@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.db.DBitemBean;
-import dao.error.DAOException;
+import beandb.DBitemBean;
+import daoerror.DAOException;
 
 public class ItemDao extends CommonDao {
 

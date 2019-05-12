@@ -1,4 +1,4 @@
-package dao.error;
+package daoerror;
 
 public class DAOException extends Exception {
 

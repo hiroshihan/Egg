@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import dao.error.DAOException;
+import daoerror.DAOException;
 
 public class CommonDao {
 	static final String JDBC_DRIVER = "org.postgresql.Driver";
