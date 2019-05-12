@@ -17,24 +17,15 @@ public class CompleteServlet extends CommonServlet {
 		try{
 			super.setCharacterEncoding(request, response);
 			HttpSession session = request.getSession(false);
-			String isLogin = (String)session.getAttribute("isLogin");
 			String action = request.getParameter("action");
 			
-			if(isLogin != null){
-				if(isLogin.equals("true")) {
-					if (action.equals("confirm")) {
-						connectJsp(request, response, null, "confirm");		
-					}else if (action.equals("end")) {
-						session.removeAttribute("cartList");
-						connectJsp(request, response, null, "end");
-					}
-					
-				} else {
-					super.connectJsp(request,response,"","login");
-				}
-			} else {
-				super.connectJsp(request,response,"","login");
+			if (action.equals("confirm")) {
+				connectJsp(request, response, null, "confirm");		
+			}else if (action.equals("end")) {
+				session.removeAttribute("cartList");
+				connectJsp(request, response, null, "end");
 			}
+			
 		} catch(Exception e) {
 			super.connectJsp(request,response,"","login");
 		}

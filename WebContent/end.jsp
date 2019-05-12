@@ -11,6 +11,6 @@
 
 購入が完了しました。
 
-<a href="/Egg/top.jsp">Topに戻る</a>
+<a href="/Egg">Topに戻る</a>
 </body>
 </html>

@@ -14,7 +14,7 @@
 <p>性別:			${user.db_user_gender}</p>
 <p>住所: 			${user.db_user_post}</p>
 <p>メールアドレス:	${user.db_user_email}</p>
-<a href="/Egg/login.jsp">ログイン</a>
-<a href="/Egg/top.jsp">Topに戻る</a>
+<a href="/Egg/LoginServlet?action=login_view">ログインページへ</a>
+<a href="/Egg">Topに戻る</a>
 </body>
 </html>

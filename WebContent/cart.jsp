@@ -12,7 +12,6 @@
 <c:if test="${empty cartList}">
 現在、カートは空です。
 </c:if>
-<p>${flag}</p>
 <table border="1">
 <tr>
 <th>商品名</th>
@@ -30,6 +29,6 @@
 </c:forEach>
 </table>
 <a href="javascript:void(0);" onclick="window.history.back();">前の画面に戻る</a>
-<a href="http://localhost:8080/Egg/confim.jsp">購入画面</a>
+<a href="http://localhost:8080/Egg/CompleteServlet?action=confirm">購入画面</a>
 </body>
 </html>

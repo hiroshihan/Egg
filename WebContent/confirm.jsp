@@ -8,12 +8,23 @@
 <title>最終確認</title>
 </head>
 <body>
-	<h1>下記商品を購入でよろしいですか？</h1>
-
-<%--購入商品リスト --%>
-	<form action="/Egg/CompleteServlet" method="post">
-		<input type="hidden" name="action" value="end">
-		<input type="submit" value="購入">
-	</form>
+<h1>下記商品を購入でよろしいですか？</h1>
+<table border="1">
+<tr>
+<th>商品名</th>
+<th>カテゴリー</th>
+<th>注文数</th>
+<th>合計価格</th>
+</tr>
+<c:forEach items="${cartList}" var="item">
+<tr>
+<td>${item.db_item_name}</td>
+<td>${item.db_item_category}</td>
+<td>${item.quantity}</td>
+<td>${item.totalprice}円</td>
+</tr>
+</c:forEach>
+</table>
+<a href="http://localhost:8080/Egg/CompleteServlet?action=end">購入完了</a>
 </body>
 </html>
