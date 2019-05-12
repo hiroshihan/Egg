@@ -14,8 +14,17 @@
 	<h1>ようこそ！Eggs ショッピングサイトへ！</h1>
 	<p></p>
 	<p></p>
+	<c:if test="${!empty message}">
+	<h1 style="color:red">${message}</h1>
+	</c:if>
 	<c:if test="${empty isLogin}">
-	<jsp:include page="/login.jsp"/>
+	<form action="/Egg/LoginServlet" method="post">
+	ユーザー名:<input type="text" name="username"><br>
+	パスワード:<input type="password" name="userpassword">
+	<input type="hidden" name="action" value="login"><br>
+	<input type="submit" value="ログイン">
+	</form>
+	<a href="/Egg/InsertUserServlet?action=regist">新規登録はこちらをクリック</a>
 	</c:if>
 	<c:if test="${!empty isLogin}">
 	<h2>商品一覧</h2>
