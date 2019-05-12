@@ -33,9 +33,7 @@ public class ItemDao extends CommonDao {
 			resultSet = executeSelect(sql, praceHolder);
 			List<DBitemBean> list = new ArrayList<>();
 			while (resultSet.next()) {
-				DBitemBean dBitemBean = new DBitemBean(resultSet.getInt(DB_ITEM_CODE),
-						resultSet.getString(DB_ITEM_NAME), resultSet.getInt(DB_ITEM_PRICE),
-						resultSet.getString(DB_ITEM_CATEGORY), resultSet.getString(DB_ITEM_REVIEW));
+				DBitemBean dBitemBean = new DBitemBean();
 				list.add(dBitemBean);
 			}
 			return list;
@@ -114,12 +112,26 @@ public class ItemDao extends CommonDao {
 		return select(sql, null);
 	}
 
-	public DBitemBean getItem(String db_item_code) throws DAOException {
-		String sql = new StringBuilder(SELECT).append("*").append(FROM).append(TABLE_NAME).append(WHERE)
-				.append(DB_ITEM_CODE).append("=?").toString();
-		List<Object> elements = new ArrayList<>();
-		elements.add(Integer.parseInt(db_item_code));
-		return select(sql, elements).get(0);
+	public DBitemBean getItem(String db_item_code, String quantity) throws DAOException {
+		try {
+			String sql =  "SELECT * FROM item WHERE db_item_code = ?";
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, Integer.parseInt(db_item_code));
+			resultSet = statement.executeQuery();
+			DBitemBean dBitemBean = new DBitemBean();
+			while (resultSet.next()) {
+				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
+				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
+				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
+				dBitemBean.setDb_item_category(resultSet.getString(DB_ITEM_CATEGORY));
+				dBitemBean.setDb_item_review(resultSet.getString(DB_ITEM_REVIEW));
+				dBitemBean.setQuantity(Integer.parseInt(quantity));
+				dBitemBean.setTotalprice(resultSet.getInt(DB_ITEM_PRICE) * Integer.parseInt(quantity));
+			}
+			return dBitemBean;
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの操作に失敗しました");
+		}
 	}
-
 }

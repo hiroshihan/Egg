@@ -9,13 +9,26 @@
 </head>
 <body>
 <h1>カートの中身</h1>
-<c:if test="${empty cart.items}">
+<c:if test="${empty cartList}">
 現在、カートは空です。
 </c:if>
-<p>${itembean.db_item_code}</p>
-<p>${itembean.db_item_name}</p>
-<p>${itembean.db_item_price}</p>
-<p>${itembean.db_item_category}</p>
+<p>${flag}</p>
+<table border="1">
+<tr>
+<th>商品名</th>
+<th>カテゴリー</th>
+<th>注文数</th>
+<th>合計価格</th>
+</tr>
+<c:forEach items="${cartList}" var="item">
+<tr>
+<td>${item.db_item_name}</td>
+<td>${item.db_item_category}</td>
+<td>${item.quantity}</td>
+<td>${item.totalprice}円</td>
+</tr>
+</c:forEach>
+</table>
 <a href="http://localhost:8080/Egg/confim.jsp">購入画面</a>
 </body>
 </html>

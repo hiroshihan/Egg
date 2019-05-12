@@ -19,6 +19,7 @@
 				<th>コード</th>
 				<th>商品名</th>
 				<th>価格</th>
+				<th>カテゴリー</th>
 				<th>個数</th>
 				<th>アクション</th>
 			</tr>
@@ -28,7 +29,8 @@
 				<td><b>${item.db_item_name}</b></td>
 				<td><b>${item.db_item_price}円</b></td>
 				<td><b>${item.db_item_category}</b></td>
-				<td>：
+				<td colspan="2">
+				<form action="/Egg/CartServlet" method="post">
 				<select name="quantity">
 				<option value="1">1
 				<option value="2">2
@@ -36,10 +38,6 @@
 				<option value="4">4
 				<option value="5">5
 				</select>
-				個<br>
-				</td>
-				<td>
-				<form action="/Egg/CartServlet" method="post">
 				<input type="hidden" name="action" value="add">
 				<input type="hidden" name="item_code" value="${item.db_item_code}">
 				<input type="submit" value="カートに追加">
