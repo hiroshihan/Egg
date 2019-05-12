@@ -90,6 +90,7 @@
 <br><br>
 メールアドレス:<input type="text"name="mail">
 <br><br>
+<input type="hidden" name="action" value="send">
 <input type="submit"value="登録">
 </form>
 <p></p>

@@ -82,10 +82,8 @@ public class UserDao extends CommonDao {
 	public int insert(DBuserBean userBean) throws DAOException {
 
 		try {
-			String sqlSelectUserCode = new StringBuilder(SELECT).append(DB_USER_CODE).append(FROM).append(TABLE_NAME)
-					.toString();
+			String sqlSelectUserCode = new StringBuilder(SELECT).append(DB_USER_CODE).append(FROM).append(TABLE_NAME).toString();
 			List<Object> codeList = select(sqlSelectUserCode, DB_USER_CODE, null);
-
 			int dbUserCount = codeList.size();
 
 			List<String> insertItems = new ArrayList<>();
@@ -118,13 +116,10 @@ public class UserDao extends CommonDao {
 	}
 
 	public String getUserPwd(String name) throws DAOException {
-		String sql = new StringBuilder(SELECT).append("*").append(FROM).append(TABLE_NAME).append(WHERE)
-				.append(DB_USER_CODE).append("=?").toString();
-
+		String sql = new StringBuilder(SELECT).append("*").append(FROM).append(TABLE_NAME).append(WHERE).append(DB_USER_NAME).append("=?").toString();
 		List<Object> praceHolder = new ArrayList<>();
 		praceHolder.add(name);
 		List<DBuserBean> userList = select(sql, praceHolder);
-
 		return userList.get(0).getDb_user_pass();
 	}
 

@@ -39,14 +39,8 @@ public class CommonDao {
 	}
 
 	public String VALUES(List<String> insertItems) {
-
-		StringBuilder sb = new StringBuilder("(");
-		for (String insertItem : insertItems) {
-			sb.append(insertItem);
-			sb.append(", ");
-		}
-		sb.delete(sb.length() - 2, sb.length());
-		sb.append(") VALUES(");
+		StringBuilder sb = new StringBuilder();
+		sb.append(" VALUES(");
 
 		for (int i = 0; i < insertItems.size(); i++) {
 			sb.append("?");
@@ -85,8 +79,8 @@ public class CommonDao {
 
 		statement = connection.prepareStatement(sql);
 		if (praceHolder != null) {
+			int i = 1;
 			for (Object element : praceHolder) {
-				int i = 1;
 				if (element instanceof Integer) {
 					statement.setInt(i, (Integer) element);
 					i++;
@@ -122,8 +116,8 @@ public class CommonDao {
 
 		statement = connection.prepareStatement(sql);
 		if (praceHolder != null) {
+			int i = 1;
 			for (Object element : praceHolder) {
-				int i = 1;
 				if (element instanceof Integer) {
 					statement.setInt(i, (Integer) element);
 					i++;
