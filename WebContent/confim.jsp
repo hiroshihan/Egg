@@ -8,9 +8,11 @@
 <title>最終確認</title>
 </head>
 <body>
-<h1>下記商品を購入でよろしいですか？</h1>
+	<h1>下記商品を購入でよろしいですか？</h1>
 
 <%--購入商品リスト --%>
-<a href="http://localhost:8080/Egg/end.jsp">購入</a>
+	<form action="/Egg/CompleteServlet" method="post">
+		<input type="submit" value="購入">
+	</form>
 </body>
 </html>
