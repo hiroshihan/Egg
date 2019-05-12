@@ -15,7 +15,7 @@ public class ItemDao extends CommonDao {
 	public static final String DB_ITEM_PRICE = "db_item_price";
 	public static final String DB_ITEM_CATEGORY = "db_item_category";
 	public static final String DB_ITEM_REVIEW = "db_item_review";
-
+	
 	public ItemDao() throws DAOException {
 		super();
 	}
@@ -34,6 +34,11 @@ public class ItemDao extends CommonDao {
 			List<DBitemBean> list = new ArrayList<>();
 			while (resultSet.next()) {
 				DBitemBean dBitemBean = new DBitemBean();
+				dBitemBean.setDb_item_code(resultSet.getInt(DB_ITEM_CODE));
+				dBitemBean.setDb_item_name(resultSet.getString(DB_ITEM_NAME));
+				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
+				dBitemBean.setDb_item_category(resultSet.getString(DB_ITEM_CATEGORY));
+				dBitemBean.setDb_item_review(resultSet.getString(DB_ITEM_REVIEW));
 				list.add(dBitemBean);
 			}
 			return list;
@@ -93,9 +98,8 @@ public class ItemDao extends CommonDao {
 	}
 
 	public List<DBitemBean> selectCategory(String category) throws DAOException {
-		String sql = new StringBuilder(SELECT).append("*").append(FROM).append(TABLE_NAME).append(WHERE)
-				.append(DB_ITEM_CATEGORY).append("=?").toString();
-		List<Object> praceHolder = new ArrayList<>();
+		String sql = new StringBuilder(SELECT).append("*").append(FROM).append(TABLE_NAME).append(WHERE).append(DB_ITEM_CATEGORY).append("=?").toString();
+		List<Object> praceHolder = new ArrayList<>();		
 		praceHolder.add(category);
 		return select(sql, praceHolder);
 	}

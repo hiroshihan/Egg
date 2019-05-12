@@ -23,7 +23,7 @@ public class InsertUserServlet extends CommonServlet {
 		setCharacterEncoding(request, response);
 		try {
 			//jsp側からデータを受け取る（request.getParameterを使う）
-			DBuserBean userBean=new DBuserBean();
+			DBuserBean userBean = new DBuserBean();
 			userBean.setDb_user_name(request.getParameter("name"));
 			userBean.setDb_user_pass(request.getParameter("pass"));
 			userBean.setDb_user_gender(request.getParameter("gender"));
@@ -32,7 +32,9 @@ public class InsertUserServlet extends CommonServlet {
 			UserDao dao =new UserDao();
 			//引数にinsertしたいデータを設定する。データはバラでもBeanにまとめるでもどっちでもいいよ
 			dao.insert(userBean);
+			request.setAttribute("user", userBean);
 			connectJsp(request, response, "", "complete");
+
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}

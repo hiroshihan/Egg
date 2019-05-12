@@ -14,7 +14,19 @@
 	<h1>ようこそ！Eggs ショッピングサイトへ！</h1>
 	<p></p>
 	<p></p>
-	<jsp:include page="/login.jsp"/>
+	<c:if test="${!empty message}">
+	<h1 style="color:red">${message}</h1>
+	</c:if>
+	<c:if test="${empty isLogin}">
+	<form action="/Egg/LoginServlet" method="post">
+	ユーザー名:<input type="text" name="username"><br>
+	パスワード:<input type="password" name="userpassword">
+	<input type="hidden" name="action" value="login"><br>
+	<input type="submit" value="ログイン">
+	</form>
+	<a href="/Egg/InsertUserServlet?action=regist">新規登録はこちらをクリック</a>
+	</c:if>
+	<c:if test="${!empty isLogin}">
 	<h2>商品一覧</h2>
 	<table border="1">
 		<tr>
@@ -28,14 +40,13 @@
 			<tr>
 				<td>${item.db_item_code}</td>
 				<td>${item.db_item_name}</td>
-				<td>${item.db_item_price}</td>
+				<td>${item.db_item_price}円</td>
 				<td>${item.db_item_category}</td>
 				<td>${item.db_item_review}</td>
 			</tr>
 		</c:forEach>
 	</table>
-<a href="/Egg/login.jsp">ログイン</a>
-<a href="/Egg/new.jsp">新規登録</a>
+	</c:if>
 
 </body>
 </html>

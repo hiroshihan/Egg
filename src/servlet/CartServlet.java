@@ -21,37 +21,27 @@ public class CartServlet extends CommonServlet {
 			super.setCharacterEncoding(request, response);
 			HttpSession session = request.getSession(false);
 			String isLogin = (String)session.getAttribute("isLogin");
+			@SuppressWarnings("unchecked")
+			List<DBitemBean> cartList = (List<DBitemBean>)session.getAttribute("cartList");
+			String action = request.getParameter("action");
 			
 			if(isLogin != null){
 				if(isLogin.equals("true")) {
-					String item_code = request.getParameter("item_code");
-					String quantity = request.getParameter("quantity");
-					ItemDao dao = new ItemDao();
-					DBitemBean itembean = dao.getItem(item_code, quantity);
-					
-					@SuppressWarnings("unchecked")
-					List<DBitemBean> cartList = (List<DBitemBean>)session.getAttribute("cartList");
-					if(cartList == null){
-						cartList = new ArrayList<DBitemBean>();
-						cartList.add(itembean);
+					if(action.equals("show")){
+						super.connectJsp(request, response,"","cart");						
 					} else {
-						int indexCount = 0;
-						for(DBitemBean b : cartList){
-							if(b.getDb_item_code() == Integer.parseInt(item_code)){
-								int requantity = b.getQuantity() + Integer.parseInt(quantity);
-								b.setQuantity(requantity);
-								b.setTotalprice(b.getDb_item_price() * requantity);
-								cartList.set(indexCount, b);
-								break;
-							}
-							indexCount++;
+						String item_code = request.getParameter("item_code");
+						String quantity = request.getParameter("quantity");
+						ItemDao dao = new ItemDao();
+						DBitemBean itembean = dao.getItem(item_code, quantity);
+						
+						if(cartList == null){
+							cartList = new ArrayList<DBitemBean>();
 						}
-						if(indexCount == cartList.size()-1){
-							cartList.add(itembean);
-						}
+						cartList.add(itembean);
+						session.setAttribute("cartList", cartList);
+						super.connectJsp(request, response,"","cart");	
 					}
-					session.setAttribute("cartList", cartList);
-					super.connectJsp(request, response,"","cart");
 				}
 			} else {
 				super.connectJsp(request,response,"","login");

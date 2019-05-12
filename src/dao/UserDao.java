@@ -36,11 +36,11 @@ public class UserDao extends CommonDao {
 			resultSet = executeSelect(sql, praceHolder);
 			List<DBuserBean> list = new ArrayList<>();
 			while (resultSet.next()) {
-				DBuserBean dBitemBean = new DBuserBean(resultSet.getInt(DB_USER_CODE),
+				DBuserBean userBean = new DBuserBean(resultSet.getInt(DB_USER_CODE),
 						resultSet.getString(DB_USER_NAME), resultSet.getString(DB_USER_POST),
 						resultSet.getString(DB_USER_EMAIL), resultSet.getString(DB_USER_GENDER),
 						resultSet.getString(DB_USER_PASS));
-				list.add(dBitemBean);
+				list.add(userBean);
 			}
 			return list;
 		} catch (SQLException e) {
@@ -82,10 +82,8 @@ public class UserDao extends CommonDao {
 	public int insert(DBuserBean userBean) throws DAOException {
 
 		try {
-			String sqlSelectUserCode = new StringBuilder(SELECT).append(DB_USER_CODE).append(FROM).append(TABLE_NAME)
-					.toString();
+			String sqlSelectUserCode = new StringBuilder(SELECT).append(DB_USER_CODE).append(FROM).append(TABLE_NAME).toString();
 			List<Object> codeList = select(sqlSelectUserCode, DB_USER_CODE, null);
-
 			int dbUserCount = codeList.size();
 
 			List<String> insertItems = new ArrayList<>();
@@ -95,12 +93,10 @@ public class UserDao extends CommonDao {
 			insertItems.add(DB_USER_EMAIL);
 			insertItems.add(DB_USER_GENDER);
 			insertItems.add(DB_USER_PASS);
-
 			String sqlInsert = new StringBuilder(INSERT_INTO).append(TABLE_NAME).append(VALUES(insertItems)).toString();
-			statement = connection.prepareStatement(sqlInsert);
+			
 			List<Object> praceHolder = new ArrayList<>();
-
-			praceHolder.add(dbUserCount + 1);
+			praceHolder.add(dbUserCount+1);
 			praceHolder.add(userBean.getDb_user_name());
 			praceHolder.add(userBean.getDb_user_post());
 			praceHolder.add(userBean.getDb_user_email());
@@ -118,13 +114,10 @@ public class UserDao extends CommonDao {
 	}
 
 	public String getUserPwd(String name) throws DAOException {
-		String sql = new StringBuilder(SELECT).append("*").append(FROM).append(TABLE_NAME).append(WHERE)
-				.append(DB_USER_CODE).append("=?").toString();
-
+		String sql = new StringBuilder(SELECT).append("*").append(FROM).append(TABLE_NAME).append(WHERE).append(DB_USER_NAME).append("=?").toString();
 		List<Object> praceHolder = new ArrayList<>();
 		praceHolder.add(name);
 		List<DBuserBean> userList = select(sql, praceHolder);
-
 		return userList.get(0).getDb_user_pass();
 	}
 
