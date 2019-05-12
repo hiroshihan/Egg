@@ -13,11 +13,9 @@ import bean.db.DBitemBean;
 import dao.UserDao;
 import dao.error.DAOException;
 
-@WebServlet("/LoginServlet")
+@WebServlet("/CompleteServlet")
 public class CompleteServlet extends CommonServlet {
 	private static final long serialVersionUID = 1L;
-	private String USER = "-";
-	private String PASS = "-";
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
