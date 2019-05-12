@@ -76,7 +76,6 @@ public class CommonDao {
 	 * @throws DAOException
 	 */
 	protected ResultSet executeSelect(String sql, List<Object> praceHolder) throws SQLException {
-
 		statement = connection.prepareStatement(sql);
 		if (praceHolder != null) {
 			int i = 1;
@@ -113,7 +112,6 @@ public class CommonDao {
 	 * @throws SQLException
 	 */
 	protected int executeUpdate(String sql, List<Object> praceHolder) throws SQLException {
-
 		statement = connection.prepareStatement(sql);
 		if (praceHolder != null) {
 			int i = 1;
