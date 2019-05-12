@@ -114,13 +114,10 @@ public class UserDao extends CommonDao {
 	}
 
 	public String getUserPwd(String name) throws DAOException {
-		String sql = new StringBuilder(SELECT).append("*").append(FROM).append(TABLE_NAME).append(WHERE)
-				.append(DB_USER_CODE).append("=?").toString();
-
+		String sql = new StringBuilder(SELECT).append("*").append(FROM).append(TABLE_NAME).append(WHERE).append(DB_USER_NAME).append("=?").toString();
 		List<Object> praceHolder = new ArrayList<>();
 		praceHolder.add(name);
 		List<DBuserBean> userList = select(sql, praceHolder);
-
 		return userList.get(0).getDb_user_pass();
 	}
 

@@ -34,6 +34,7 @@ public class InsertUserServlet extends CommonServlet {
 			dao.insert(userBean);
 			request.setAttribute("user", userBean);
 			connectJsp(request, response, "", "complete");
+
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}

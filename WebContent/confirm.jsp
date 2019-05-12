@@ -12,6 +12,7 @@
 
 <%--購入商品リスト --%>
 	<form action="/Egg/CompleteServlet" method="post">
+		<input type="hidden" name="action" value="end">
 		<input type="submit" value="購入">
 	</form>
 </body>

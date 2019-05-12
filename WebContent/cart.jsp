@@ -29,6 +29,7 @@
 </tr>
 </c:forEach>
 </table>
+<a href="javascript:void(0);" onclick="window.history.back();">前の画面に戻る</a>
 <a href="http://localhost:8080/Egg/confim.jsp">購入画面</a>
 </body>
 </html>

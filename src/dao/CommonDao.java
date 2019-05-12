@@ -113,7 +113,7 @@ public class CommonDao {
 	 */
 	protected int executeUpdate(String sql, List<Object> praceHolder) throws SQLException {
 		statement = connection.prepareStatement(sql);
-		 if (praceHolder != null) {
+		if (praceHolder != null) {
 			int i = 1;
 			for (Object element : praceHolder) {
 				if (element instanceof Integer) {
