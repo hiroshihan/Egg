@@ -26,10 +26,13 @@ public class LoginServlet extends CommonServlet {
 				HttpSession session = request.getSession();
 				UserDao dao = new UserDao();
 				String dbpw = dao.getUserPwd(name);
+
 				if (dbpw.equals(pw)) {
 					session.setAttribute("isLogin", "true");
+					request.setAttribute("message", "ログイン成功しました。");
 					connectJsp(request, response, null, "index");
 				} else {
+					request.setAttribute("message", "パスワードが間違っています。");
 					connectJsp(request, response, null, "login");
 				}
 			} else if (action.equals("logout")) {
@@ -37,12 +40,15 @@ public class LoginServlet extends CommonServlet {
 				if (session != null) {
 					session.invalidate();
 				}
+				request.setAttribute("message", "ログアウトしました。");
 				connectJsp(request, response, null, "index");
 			} else if (action.equals("login_view")) {
 				connectJsp(request, response, null, "login");
 			}
 		} catch(Exception e){
 			e.printStackTrace();
+			request.setAttribute("message", "ユーザ名またはパスワードが間違っています。");
+			connectJsp(request, response, null, "login");
 		}
 	}
 
