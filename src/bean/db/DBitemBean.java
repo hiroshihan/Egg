@@ -9,7 +9,21 @@ public class DBitemBean extends CommonBean {
 	private int db_item_price;
 	private String db_item_category;
 	private String db_item_review;
+	private int quantity;
+	private int totalprice;
 	
+	public int getTotalprice() {
+		return totalprice;
+	}
+	public void setTotalprice(int totalprice) {
+		this.totalprice = totalprice;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	public int getDb_item_code() {
 		return db_item_code;
 	}

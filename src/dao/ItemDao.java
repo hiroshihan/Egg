@@ -150,7 +150,7 @@ public class ItemDao extends CommonDao {
 		
 	}
 
-	public DBitemBean getItem(String db_item_code) throws DAOException {
+	public DBitemBean getItem(String db_item_code, String quantity) throws DAOException {
 		try {
 			String sql =  "SELECT * FROM item WHERE db_item_code = ?";
 			statement = connection.prepareStatement(sql);
@@ -163,6 +163,8 @@ public class ItemDao extends CommonDao {
 				dBitemBean.setDb_item_price(resultSet.getInt(DB_ITEM_PRICE));
 				dBitemBean.setDb_item_category(resultSet.getString(DB_ITEM_CATEGORY));
 				dBitemBean.setDb_item_review(resultSet.getString(DB_ITEM_REVIEW));
+				dBitemBean.setQuantity(Integer.parseInt(quantity));
+				dBitemBean.setTotalprice(resultSet.getInt(DB_ITEM_PRICE) * Integer.parseInt(quantity));
 			}
 			return dBitemBean;
 		} catch(Exception e) {
